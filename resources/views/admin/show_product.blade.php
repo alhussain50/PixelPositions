@@ -37,6 +37,12 @@
         <!-- partial -->
         <div class="main-panel">
             <div class="content-wrapper">
+                @if(session()->has('message'))
+                <div class="alert alert-success">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    {{session()->get('message')}}
+                </div>
+                @endif
                 <h2 class="product-show-header">All Products</h2>
                 <table class="center">
                     <tr class="product-table-header">
@@ -47,6 +53,8 @@
                         <th class="product-header-column">Price</th>
                         <th class="product-header-column">Discount Price</th>
                         <th class="product-header-column">Product Image</th>
+                        <th class="product-header-column">Delete</th>
+                        <th class="product-header-column">Edit</th>
                     </tr>
 
                     @foreach ($product as $product)
@@ -59,6 +67,12 @@
                         <td>{{$product->discount_price}}</td>
                         <td>
                           <img class="product-image" src="/product/{{$product->image}}">
+                        </td>
+                        <td>
+                          <a class="btn btn-danger" onclick="return confirm('Confirm Deletion?')" href="{{url('delete_product', $product->id)}}">Delete</a>
+                        </td>
+                        <td>
+                          <a class="btn btn-success" href="">Edit</a>
                         </td>
                     </tr>
                     @endforeach
