@@ -60,7 +60,7 @@
                     </div>
                     <div class="product-attribute">
                         <label>Discount Price</label>
-                        <input class="discount-price-input general-input" type="number" min="0" name="discount_price" placeholder="Discount if Applied" value="{{$product->discount_price}}" required>
+                        <input class="discount-price-input general-input" type="number" min="0" name="discount_price" placeholder="Discount if Applied" value="{{$product->discount_price}}">
                     </div>
                     <div class="product-attribute">
                         <label>Product Quantity</label>

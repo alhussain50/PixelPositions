@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Product;
 
 class HomeController extends Controller
 {
@@ -15,11 +16,13 @@ class HomeController extends Controller
             return view('admin.home');
         }
         else{
-            return view('home.userpage');
+            $product = product::all();
+            return view('home.userpage', compact('product'));
         }
     }
 
     public function index(){
-        return view('home.userpage');
+        $product = product::all();
+        return view('home.userpage', compact('product'));
     }
 }
