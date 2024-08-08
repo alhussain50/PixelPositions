@@ -25,4 +25,17 @@ class HomeController extends Controller
         $product = product::all();
         return view('home.userpage', compact('product'));
     }
+
+    public function product_details($id){
+        $product = product::find($id);
+        return view('home.product_details', compact('product'));
+    }
+
+    public function add_cart($id){
+        if(Auth::id()){
+            return redirect()->back();
+        }else{
+            return redirect('login');
+        }
+    }
 }
