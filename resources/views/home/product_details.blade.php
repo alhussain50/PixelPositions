@@ -57,7 +57,17 @@
                 @if ($product->quantity)
                     <h6>Available Quantity: {{$product->quantity}}</h6>
                 @endif
-                <a href="" class="btn btn-primary">Add to Cart</a>
+                <form action="{{url('add_cart', $product->id)}}" method="Post" type="submit" value="Add To Cart">
+                    @csrf
+                    <div class="row">
+                       <div class="col-md-4">
+                          <input type="number" name="quantity" value="1" min="1" style="width: 100px; height: 53px">
+                       </div>
+                       <div class="col-md-4">
+                          <input type="submit" value="Add To Cart">
+                       </div>
+                    </div>
+                 </form>
                 </div>
             </div>
         </div>
