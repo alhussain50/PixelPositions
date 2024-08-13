@@ -40,6 +40,8 @@ route::post('/update_product_confirm/{id}', [AdminController::class, 'update_pro
 
 route::get('/order', [AdminController::class, 'order']);
 
+route::get('/delivered/{id}', [AdminController::class, 'delivered']);
+
 
 // Routes For Store Frontend
 
