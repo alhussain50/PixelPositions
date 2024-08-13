@@ -44,6 +44,8 @@ route::get('/delivered/{id}', [AdminController::class, 'delivered']);
 
 route::get('/print_pdf/{id}', [AdminController::class, 'print_pdf']);
 
+route::get('/send_email/{id}', [AdminController::class, 'send_email']);
+
 
 // Routes For Store Frontend
 
