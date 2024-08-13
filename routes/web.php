@@ -16,7 +16,7 @@ Route::middleware([
     })->name('dashboard');
 });
 
-route::get('redirect', [HomeController::class, 'redirect']);
+route::get('redirect', [HomeController::class, 'redirect'])->middleware('auth', 'verified');
 
 // Routes for Admin
 
@@ -43,6 +43,8 @@ route::get('/order', [AdminController::class, 'order']);
 route::get('/delivered/{id}', [AdminController::class, 'delivered']);
 
 route::get('/print_pdf/{id}', [AdminController::class, 'print_pdf']);
+
+route::get('/send_email/{id}', [AdminController::class, 'send_email']);
 
 
 // Routes For Store Frontend
