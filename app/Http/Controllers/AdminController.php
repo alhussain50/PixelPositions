@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Order;
+use App\Notifications\SendEmailNotification;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Notification;
 
 class AdminController extends Controller
 {
@@ -117,5 +119,26 @@ class AdminController extends Controller
     public function send_email($id) {
         $order = order::find($id);
         return view('admin.email_info', compact('order'));
+    }
+
+    public function send_user_email(Request $request, $id){
+        $order = order::find($id);
+        $details = [
+            'greeting' => $request->greeting,
+            'firstline' => $request->firstline,
+            'body' => $request->body,
+            'button' => $request->button,
+            'url' => $request->url,
+            'lastline' => $request->lastline,
+        ];
+        Notification::send($order, new SendEmailNotification($details));
+
+        return redirect()->back()->with('message', 'Mail Sent Successfully!!');
+    }
+
+    public function searchData(Request $request){
+        $searchText = $request->search;
+        $order = order::where('name', 'LIKE', "%$searchText%")->orwhere('phone', 'LIKE', "%$searchText%")->orwhere('product_title', 'LIKE', "%$searchText%")->orwhere('email', 'LIKE', "%$searchText%")->orwhere('price', 'LIKE', "%$searchText%")->get();
+        return view('admin.order', compact('order'));
     }
 }

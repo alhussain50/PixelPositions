@@ -46,6 +46,10 @@ route::get('/print_pdf/{id}', [AdminController::class, 'print_pdf']);
 
 route::get('/send_email/{id}', [AdminController::class, 'send_email']);
 
+route::post('/send_user_email/{id}', [AdminController::class, 'send_user_email']);
+
+route::get('/search', [AdminController::class, 'searchData']);
+
 
 // Routes For Store Frontend
 
@@ -61,3 +65,4 @@ route::get('/cash_order', [HomeController::class, 'cash_order']);
 
 route::get('/stripe/{totalPrice}', [HomeController::class, 'stripe']);
 route::post('stripe/{totalPrice}', [HomeController::class, 'stripePost'])->name('stripe.post');
+
