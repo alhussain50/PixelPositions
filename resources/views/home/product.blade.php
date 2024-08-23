@@ -4,6 +4,14 @@
           <h2>
              Our <span>products</span>
           </h2>
+          <br><br>
+          <div>
+            <form action="{{url('product_search')}}" method="get">
+               @csrf
+               <input style="width: 500px" type="text" name="search" placeholder="Search Products">
+               <input type="submit" value="search">
+            </form>
+          </div>
        </div>
        <div class="row">
 
@@ -58,10 +66,7 @@
                </div>
             </div>
          </div>
-         @endforeach
-
-         {{-- {!!$product->appends(Request::all())->links()!!} --}}
-          
+         @endforeach          
        </div>
     </div>
  </section>
