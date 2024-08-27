@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    
-    <base href="/public">
 
     @include('admin.css')
     <style>
