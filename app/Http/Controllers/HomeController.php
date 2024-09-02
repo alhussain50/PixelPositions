@@ -13,6 +13,7 @@ use App\Models\Reply;
 use Illuminate\Console\View\Components\Warn;
 use Session;
 use Stripe;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class HomeController extends Controller
 {
@@ -78,7 +79,9 @@ class HomeController extends Controller
                 }
                 $cart->save();
 
-                return redirect()->back()->with('message', 'Product Added Successfully');
+                Alert::success('Product Added Successfully', 'We have added product to the cart');
+
+                return redirect()->back()->with('message', 'New Prudct Added To The Cart');
 
             }else{
                 $cart = new cart;
