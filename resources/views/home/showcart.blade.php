@@ -62,39 +62,45 @@
 
 
             <div class="center">
-                <table>
-                    <tr>
-                        <th class="th_deg">Product Title</th>
-                        <th class="th_deg">Product Quantity</th>
-                        <th class="th_deg">Price</th>
-                        <th class="th_deg">Image</th>
-                        <th class="th_deg">Action</th>
-                    </tr>
 
-                    <?php $totalPrice = 0; ?>
+                <?php if(count($cart) == 0){ ?>
 
-                    @foreach ($cart as $cart)
+                    <h1 style="font-size: 40px; font-weight: 600">Cart is Empty!!</h1>
+                    
+                <?php } else { ?>
+                    <table>
                         <tr>
-                            <td>{{$cart->product_title}}</td>
-                            <td>{{$cart->quantity}}</td>
-                            <td>${{$cart->price}}</td>
-                            <td><img class="img_deg" src="/product/{{$cart->image}}"></td>
-                            <td><a class="btn btn-danger" onclick="confirmation(event)" href="{{url('/remove_cart', $cart->id)}}">Remove</a></td>
+                            <th class="th_deg">Product Title</th>
+                            <th class="th_deg">Product Quantity</th>
+                            <th class="th_deg">Price</th>
+                            <th class="th_deg">Image</th>
+                            <th class="th_deg">Action</th>
                         </tr>
 
-                        <?php $totalPrice = $totalPrice + $cart->price ?>
-                    @endforeach
-                </table>
+                        <?php $totalPrice = 0; ?>
 
-                <div>
-                    <h1 class="total_deg">Total Price: ${{$totalPrice}}</h1>
-                </div>
+                        @foreach ($cart as $cart)
+                            <tr>
+                                <td>{{$cart->product_title}}</td>
+                                <td>{{$cart->quantity}}</td>
+                                <td>${{$cart->price}}</td>
+                                <td><img class="img_deg" src="/product/{{$cart->image}}"></td>
+                                <td><a class="btn btn-danger" onclick="confirmation(event)" href="{{url('/remove_cart', $cart->id)}}">Remove</a></td>
+                            </tr>
 
-                <div>
-                    <h1 style="font-size: 25px; padding-bottom: 15px">Proceed to Order</h1>
-                    <a href="{{url('cash_order')}}" class="btn btn-danger">Cash on Delivery</a>
-                    <a href="{{url('stripe', $totalPrice)}}" class="btn btn-danger">Pay Using Card</a>
-                </div>
+                            <?php $totalPrice = $totalPrice + $cart->price ?>
+                        @endforeach
+                    </table>
+                    <div>
+                        <h1 class="total_deg">Total Price: ${{$totalPrice}}</h1>
+                    </div>
+    
+                    <div>
+                        <h1 style="font-size: 25px; padding-bottom: 15px">Proceed to Order</h1>
+                        <a href="{{url('cash_order')}}" class="btn btn-danger">Cash on Delivery</a>
+                        <a href="{{url('stripe', $totalPrice)}}" class="btn btn-danger">Pay Using Card</a>
+                    </div>
+                <?php } ?>
 
             </div>
 
